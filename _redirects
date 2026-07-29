@@ -1,0 +1,15 @@
+# Old Joomla URLs (currently live on innercircle.gi)
+/index.php/Precision_Portfolio    /#/portfolio      301
+/index.php/Performance            /#/performance    301
+/index.php/Contactus              /#/contact        301
+/index.php/Pricing                /#/contact        301
+/index.php                        /                 301
+
+# Previous multi-page build
+/precision-portfolio.html         /#/portfolio      301
+/performance.html                 /#/performance    301
+/contact.html                     /#/contact        301
+/innercircle.html                 /                 301
+
+# Everything else falls back to the single page
+/*                                /index.html       200
