@@ -951,7 +951,8 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mob-menu  { display: flex; }
-  .pillars-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3rem); }
+  .pillars { grid-template-rows: auto; }
   .contact-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-item:nth-child(2)::after { display: none; }
@@ -971,6 +972,18 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .q-num       { grid-area: num; font-size: 0.85rem; }
   .q-title-text{ grid-area: title; }
   .q-plus      { grid-area: plus; align-self: center; }
+  .section-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
+  .pillars { gap: 1.25rem; }
+  .pillar { display: block; padding: 1.6rem 1.4rem; }
+  .pillar-icon {
+    width: auto; height: auto; justify-content: flex-start;
+    font-size: 1.15rem; margin-bottom: 0.85rem;
+  }
+  .pillar-h { font-size: 1.18rem; line-height: 1.35; margin-bottom: 0.6rem; }
+  .pillar-p { font-size: 1rem; line-height: 1.7; }
+  .contact-detail { gap: 1.1rem; margin-bottom: 2.25rem; }
+  .contact-icon { width: 40px; height: 40px; }
+  .contact-val { font-size: 1.1rem; }
   .q-list { --q-inset: 1.25rem; }
   footer { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.5rem; }
   .footer-logo { justify-self: center; }
