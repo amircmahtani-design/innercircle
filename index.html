@@ -359,7 +359,7 @@ nav {
 }
 
 /* ── ACCORDION (native <details>) ── */
-.q-list { margin-top: 3.5rem; }
+.q-list { margin-top: 3.5rem; --q-inset: 1.75rem; }
 .q-item {
   border-top: 1px solid var(--border);
   transition: background 0.3s;
@@ -368,7 +368,8 @@ nav {
 .q-item:hover { background: rgba(212,175,55,0.025); }
 .q-head {
   display: grid; grid-template-columns: 3.5rem 1fr auto;
-  align-items: center; gap: 1.5rem; padding: 2.25rem 0;
+  align-items: center; gap: 1.5rem;
+  padding: 2.25rem var(--q-inset);
   cursor: pointer; list-style: none;
 }
 .q-head::-webkit-details-marker { display: none; }
@@ -406,7 +407,7 @@ nav {
 .q-body {
   font-size: clamp(1.05rem, 1.8vw, 1.25rem);
   color: rgba(249,245,236,0.82); line-height: 1.95;
-  padding: 0 3.5rem 2.5rem 5rem;
+  padding: 0 var(--q-inset) 2.5rem calc(var(--q-inset) + 5rem);
 }
 .q-item[open] .q-body { animation: q-open 0.45s cubic-bezier(0.4,0,0.2,1) both; }
 @keyframes q-open { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
@@ -951,12 +952,13 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
     grid-template-areas: "num  plus"
                          "title plus";
     gap: 0.45rem 1.25rem;
-    padding: 1.9rem 0;
+    padding: 1.9rem var(--q-inset);
   }
   .q-num       { grid-area: num; font-size: 0.85rem; }
   .q-title-text{ grid-area: title; }
   .q-plus      { grid-area: plus; align-self: center; }
-  .q-body { padding-left: 0; padding-right: 0; padding-bottom: 2.25rem; }
+  .q-list { --q-inset: 1.25rem; }
+  .q-body { padding-left: var(--q-inset); padding-right: var(--q-inset); padding-bottom: 2.25rem; }
   .section-intro { margin-bottom: 2.5rem; }
   .perf-bar { padding: 1rem 1.25rem; }
   .perf-stats { grid-template-columns: 1fr; }
