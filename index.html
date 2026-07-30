@@ -433,6 +433,9 @@ nav {
   color: var(--white); position: relative; z-index: 1;
   margin-bottom: 1.75rem; text-align: center;
 }
+/* without this the trailing margin pushes a quote with no attribution
+   above the optical centre of the box */
+.quote-block p:last-child { margin-bottom: 0; }
 .quote-attr {
   font-family: var(--display); font-size: 0.7rem;
   letter-spacing: 0.25em; text-transform: uppercase;
@@ -597,9 +600,16 @@ footer {
   border-top: 1px solid var(--border);
   background: var(--deep);
   padding: 3rem var(--pad);
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 2rem; position: relative; width: 100%;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 2rem;
+  position: relative; width: 100%;
 }
+/* equal 1fr side columns => the middle cell is centred on the page,
+   not centred in whatever space the logo happens to leave over */
+.footer-logo { justify-self: start; }
+.footer-copy { text-align: center; }
+.footer-reg  { justify-self: end; text-align: right; }
+.footer-note { grid-column: 1 / -1; }
 footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gold-h); }
 .footer-logo img {
   height: 56px; width: auto;
@@ -623,11 +633,12 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .cog-wrap {
   display: flex; align-items: center; justify-content: center;
   gap: clamp(1rem, 3vw, 2rem);
-  padding: clamp(1.75rem, 3.5vh, 3rem) var(--pad);
+  padding: clamp(1.25rem, 2.5vh, 2rem) var(--pad);
   background: var(--deep); overflow: hidden;
 }
 /* section that runs straight into the cog divider */
-.section-inner.sec-tight-b { padding-bottom: clamp(1.75rem, 3.5vh, 3rem); }
+.section-inner.sec-tight-b { padding-bottom: 0; }
+.section-inner.sec-tight-b > *:last-child { margin-bottom: 0; }
 .cog-svg { flex-shrink: 0; }
 .cog-a { animation: spin-cw 12s linear infinite; transform-origin: center; }
 .cog-b { animation: spin-ccw 8s linear infinite; transform-origin: center; }
@@ -642,7 +653,7 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 3rem) var(--pad) 4rem;
+  padding: calc(var(--nav-h) + 3rem) var(--pad) clamp(2rem, 3.5vh, 3rem);
   overflow: hidden;
 }
 .page-hero-bg {
@@ -658,6 +669,9 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 0%, transparent 80%);
 }
 .page-hero-content { position: relative; z-index: 2; }
+/* the block straight after a hero shouldn't stack its own full top padding */
+.page-hero + div > .section-inner,
+.page-hero + .video-wrap > .video-inner { padding-top: clamp(2.5rem, 5vh, 4rem); }
 .page-eyebrow {
   font-family: var(--display); font-size: 0.72rem;
   letter-spacing: 0.5em; text-transform: uppercase;
@@ -958,6 +972,10 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .q-title-text{ grid-area: title; }
   .q-plus      { grid-area: plus; align-self: center; }
   .q-list { --q-inset: 1.25rem; }
+  footer { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.5rem; }
+  .footer-logo { justify-self: center; }
+  .footer-reg  { justify-self: center; text-align: center; }
+  .footer-note { text-align: left; }
   .q-body { padding-left: var(--q-inset); padding-right: var(--q-inset); padding-bottom: 2.25rem; }
   .section-intro { margin-bottom: 2.5rem; }
   .perf-bar { padding: 1rem 1.25rem; }
