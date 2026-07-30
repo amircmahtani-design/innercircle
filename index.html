@@ -450,7 +450,12 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(3rem, 6vw, 6rem); align-items: stretch; margin-top: 1rem;
 }
-.pillars { display: grid; grid-template-rows: repeat(3, 1fr); gap: 1.5rem; }
+.pillars {
+  display: grid; grid-template-rows: repeat(3, auto); gap: 1.5rem;
+  /* each card is only as tall as its text; any leftover height goes into
+     the gaps so the column still bottoms out level with the quote block */
+  align-content: space-between;
+}
 .pillar {
   display: flex; gap: 1.75rem; align-items: flex-start;
   padding: 2rem 1.75rem; border: 1px solid var(--border);
@@ -974,13 +979,13 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .q-plus      { grid-area: plus; align-self: center; }
   .section-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
   .pillars { gap: 1.25rem; }
-  .pillar { display: block; padding: 1.6rem 1.4rem; }
+  .pillar { display: block; padding: 1.75rem 1.4rem; text-align: center; }
   .pillar-icon {
-    width: auto; height: auto; justify-content: flex-start;
-    font-size: 1.15rem; margin-bottom: 0.85rem;
+    width: auto; height: auto; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 0.9rem;
   }
-  .pillar-h { font-size: 1.18rem; line-height: 1.35; margin-bottom: 0.6rem; }
-  .pillar-p { font-size: 1rem; line-height: 1.7; }
+  .pillar-h { font-size: 1.18rem; line-height: 1.35; margin-bottom: 0.6rem; text-align: center; }
+  .pillar-p { font-size: 1rem; line-height: 1.7; text-align: center; }
   .contact-detail { gap: 1.1rem; margin-bottom: 2.25rem; }
   .contact-icon { width: 40px; height: 40px; }
   .contact-val { font-size: 1.1rem; }
