@@ -615,13 +615,15 @@ footer {
 .footer-copy { text-align: center; }
 .footer-reg  { justify-self: end; text-align: right; }
 .footer-note { grid-column: 1 / -1; }
+/* the credit, a row of its own under the copyright */
+.footer-built { grid-column: 1 / -1; text-align: center; }
 footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gold-h); }
 .footer-logo img {
   height: 56px; width: auto;
   filter: drop-shadow(0 2px 8px rgba(212,175,55,0.3));
   display: block; cursor: pointer;
 }
-.footer-copy, .footer-reg {
+.footer-copy, .footer-reg, .footer-built {
   font-family: var(--display); font-size: 0.65rem;
   letter-spacing: 0.18em; color: rgba(249,245,236,0.28);
 }
@@ -1528,6 +1530,7 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   </a>
   <div class="footer-copy">&copy; 2019&ndash;<span id="yr">2026</span> Inner Circle. All rights reserved.</div>
   <div class="footer-reg">Gibraltar &middot; innercircle.gi</div>
+  <div class="footer-built">Website made by Zenith Advisory LLC</div>
   <div class="footer-note">
     Inner Circle is closed to new subscriptions. Nothing on this website constitutes an offer, invitation or solicitation to invest, nor investment advice. The value of investments can fall as well as rise, and past performance is not a reliable indicator of future returns.
   </div>
