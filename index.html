@@ -969,7 +969,7 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   background: var(--card); border: 1px solid var(--border);
 }
 .member--lead { grid-row: span 5; grid-template-rows: auto; }
-.member--ai { grid-row: span 6; }
+.member--ai { grid-row: span 5; }
 .member .portrait { position: relative; aspect-ratio: 4 / 5; background: #16140f; overflow: hidden; }
 /* One neutral black-and-white grade with fine grain on every portrait, so the set reads as one shoot */
 .member .portrait img {
@@ -991,11 +991,6 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 }
 .member--lead .portrait { margin: 12px 12px 0; outline-color: rgba(212,175,55,0.7); }
 .member--lead { border-color: var(--border2); }
-.ai-tag {
-  display: block; margin-bottom: 0.7rem;
-  font-family: var(--display); font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: rgba(249,245,236,0.45);
-}
 .member h3 {
   font-family: var(--display); font-weight: 500;
   font-size: clamp(1rem, 1.4vw, 1.12rem); letter-spacing: 0.12em; text-transform: uppercase;
@@ -1011,7 +1006,7 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .team-disclosure {
   max-width: 760px; margin: clamp(3rem, 6vw, 4.5rem) auto 0; text-align: center;
   font-size: 11px; line-height: 1.6; letter-spacing: 0.01em;
-  color: rgba(249,245,236,0.34);
+  color: rgba(249,245,236,0.4);
 }
 .member--ai .member-body p { font-size: 1.02rem; line-height: 1.7; }
 .member--ai h3 { font-size: 0.98rem; letter-spacing: 0.1em; }
@@ -1596,69 +1591,63 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
       </div>
       <div class="org-link" aria-hidden="true"></div>
 
-      <!-- Conceptual AI personas, kept as their own section -->
-      <span class="team-label reveal">Conceptual AI Personas</span>
+      <!-- AI agents (see disclosure below) -->
+      <span class="team-label reveal">Research &amp; Operations</span>
 
       <h2 class="team-group reveal"><span>Investment Research</span></h2>
       <div class="team-grid team-grid--research">
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/matteo-ricci.webp" alt="AI-generated portrait of a fictional persona, Matteo Ricci" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/matteo-ricci.webp" alt="AI-generated portrait representing Matteo Ricci" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Matteo Ricci</h3>
             <span class="role">Strategy &amp; Portfolio Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for organising investment themes, comparing allocation scenarios and turning complex questions into clear research briefs for human review.</p>
+            <p>Matteo organises Inner Circle&rsquo;s investment themes, compares allocation scenarios and turns complex questions into clear research briefs for the leadership team.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/evelyn-tan.webp" alt="AI-generated portrait of a fictional persona, Evelyn Tan" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/evelyn-tan.webp" alt="AI-generated portrait representing Evelyn Tan" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Evelyn Tan</h3>
             <span class="role">Global Macro Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for tracking economic indicators, policy developments and market narratives, with attention to the assumptions and uncertainties behind each view.</p>
+            <p>Evelyn tracks economic indicators, policy developments and market narratives, setting out the assumptions and uncertainties that sit behind each view.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/marcus-adeyemi.webp" alt="AI-generated portrait of a fictional persona, Marcus Adeyemi" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/marcus-adeyemi.webp" alt="AI-generated portrait representing Marcus Adeyemi" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Marcus Adeyemi</h3>
             <span class="role">Risk &amp; Scenario Analysis</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for examining downside scenarios, concentration and liquidity considerations, making potential exposures and trade-offs easier to assess.</p>
+            <p>Marcus examines downside scenarios, concentration and liquidity, making potential exposures and trade-offs easier for the leadership team to assess.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/arjun-mehta.webp" alt="AI-generated portrait of a fictional persona, Arjun Mehta" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/arjun-mehta.webp" alt="AI-generated portrait representing Arjun Mehta" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Arjun Mehta</h3>
             <span class="role">Private Markets Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for reviewing business models, sector dynamics and transaction materials, organising evidence and open questions for further due diligence.</p>
+            <p>Arjun reviews business models, sector dynamics and transaction materials, organising the evidence and open questions for further due diligence.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/dalia-mansour.webp" alt="AI-generated portrait of a fictional persona, Dalia Mansour" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/dalia-mansour.webp" alt="AI-generated portrait representing Dalia Mansour" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Dalia Mansour</h3>
             <span class="role">Regional Market Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for bringing together regional market developments, sector information and cross-border considerations to support a broader view of opportunities and risks.</p>
+            <p>Dalia brings together regional market developments, sector information and cross-border considerations for a broader view of opportunities and risks.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/camila-duarte.webp" alt="AI-generated portrait of a fictional persona, Camila Duarte" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/camila-duarte.webp" alt="AI-generated portrait representing Camila Duarte" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Camila Duarte</h3>
             <span class="role">Partnership Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for mapping potential counterparties, comparing strategic fit and preparing background briefs for considered business conversations.</p>
+            <p>Camila maps potential counterparties, compares strategic fit and prepares background briefs ahead of considered business conversations.</p>
           </div>
         </article>
       </div>
@@ -1666,48 +1655,44 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
       <h2 class="team-group reveal"><span>Operations &amp; Governance</span></h2>
       <div class="team-grid team-grid--ops">
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/victor-albrecht.webp" alt="AI-generated portrait of a fictional persona, Victor Albrecht" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/victor-albrecht.webp" alt="AI-generated portrait representing Victor Albrecht" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Victor Albrecht</h3>
             <span class="role">Operations &amp; Reporting</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for organising reporting workflows, document registers and review schedules, with an emphasis on clear records and consistent follow-through.</p>
+            <p>Victor organises reporting workflows, document registers and review schedules, with an emphasis on clear records and consistent follow-through.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/kenji-sato.webp" alt="AI-generated portrait of a fictional persona, Kenji Sato" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/kenji-sato.webp" alt="AI-generated portrait representing Kenji Sato" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Kenji Sato</h3>
             <span class="role">Data &amp; Systems</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for structuring research data, checking consistency and designing repeatable analytical workflows with traceable inputs and assumptions.</p>
+            <p>Kenji structures research data, checks it for consistency and designs repeatable analytical workflows with traceable inputs and assumptions.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/simone-mensah.webp" alt="AI-generated portrait of a fictional persona, Simone Mensah" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/simone-mensah.webp" alt="AI-generated portrait representing Simone Mensah" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Simone Mensah</h3>
             <span class="role">Investor Communications</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for developing clear reporting narratives, organising investor questions and preparing concise updates for approval by the responsible human team.</p>
+            <p>Simone develops clear reporting narratives, organises investor questions and prepares concise updates for approval by the leadership team.</p>
           </div>
         </article>
         <article class="member member--ai reveal">
-          <div class="portrait"><img src="team/ingrid-voss.webp" alt="AI-generated portrait of a fictional persona, Ingrid Voss" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="team/ingrid-voss.webp" alt="AI-generated portrait representing Ingrid Voss" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
-            <span class="ai-tag">Conceptual AI persona</span>
             <h3>Ingrid Voss</h3>
             <span class="role">Governance &amp; Stewardship Research</span>
             <div class="member-rule"></div>
-            <p>A conceptual AI persona for structuring governance materials, documenting decision criteria and preparing questions for appropriate legal, regulatory and professional review.</p>
+            <p>Ingrid structures governance materials, documents decision criteria and prepares questions for the appropriate legal, regulatory and professional review.</p>
           </div>
         </article>
       </div>
 
-      <p class="team-disclosure">The ten AI personas are fictional concepts with AI-generated portraits. They describe proposed research and operational support functions, not human employees, licensed advisers or confirmed deployed AI systems. Human leadership retains responsibility for decisions and commitments. Human leadership portraits have been edited with AI.</p>
+      <p class="team-disclosure">Everyone on this page other than Chandru Mahtani and Amir Mahtani is a named AI agent, not a human employee or licensed adviser. Their portraits are AI-generated representations of fictional identities. Human leadership retains responsibility for all decisions and commitments.</p>
     </div>
   </div>
 
