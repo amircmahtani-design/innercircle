@@ -114,14 +114,20 @@ html:not(.js) .view { display: block; }
 
 /* ── POPUP ── */
 #popup-overlay {
-  position: fixed; inset: 0; z-index: 8000;
-  background: rgba(0,0,0,0.92);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 2rem;
+  /* covers the full screen, including behind mobile browser toolbars (lvh),
+     while the card centres in the part that is actually visible (dvh) */
+  position: fixed; top: 0; left: 0; right: 0; z-index: 8000;
+  height: 100vh; height: 100lvh;
+  background: rgba(0,0,0,0.94);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; justify-content: center;
+  padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem
+           calc(max(1.25rem, env(safe-area-inset-bottom)) + (100lvh - 100dvh));
   opacity: 0; animation: pop-in 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-  overflow-y: auto;
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
 }
+/* margin:auto centres when it fits and never clips the top when it doesn't */
+#popup-overlay > .popup { margin: auto; }
 @keyframes pop-in { to { opacity: 1; } }
 
 .popup {
@@ -181,6 +187,24 @@ html:not(.js) .view { display: block; }
 .popup-btn:hover {
   box-shadow: 0 8px 48px rgba(212,175,55,0.5), inset 0 1px 0 rgba(255,244,153,0.5);
   transform: translateY(-2px);
+}
+/* phones and short screens: tighter card so the whole thing fits on one screen */
+@media (max-width: 620px), (max-height: 760px) {
+  .popup { padding: 2rem 1.5rem 1.75rem; }
+  .popup::before { inset: 6px; }
+  .popup-emblem { width: 84px; margin-bottom: 1.1rem; }
+  .popup-overline { font-size: 0.66rem; letter-spacing: 0.32em; line-height: 1.8; margin-bottom: 0.5rem; }
+  .popup-rule { margin: 1.1rem auto; width: 70px; }
+  .popup-headline { font-size: 2rem; margin-bottom: 0.9rem; }
+  .popup-body { font-size: 1.02rem; line-height: 1.65; margin-bottom: 1.4rem; }
+  .popup-btn { padding: 1rem 1rem; letter-spacing: 0.24em; }
+}
+@media (max-height: 620px) {
+  .popup { padding: 1.5rem 1.25rem 1.4rem; }
+  .popup-emblem { width: 64px; margin-bottom: 0.75rem; }
+  .popup-rule { margin: 0.8rem auto; }
+  .popup-headline { font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .popup-body { line-height: 1.55; margin-bottom: 1.1rem; }
 }
 
 /* ── NAV ── */
