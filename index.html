@@ -926,24 +926,56 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 
 
 /* ── TEAM ── */
-/* Cards share row tracks (subgrid), so photo, name, title, rule and bio line up across a row */
-.team-grid {
-  --gap: clamp(1.5rem, 3vw, 2.5rem);
-  display: grid; gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 390px));
-  justify-content: center;
+.team-wrap { max-width: 1400px; }
+.team-label {
+  display: block; text-align: center; margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  font-family: var(--display); font-size: 0.72rem; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--gold-s); background: var(--gold-h); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
 }
+/* one card per tier, centred; the gold link joins the tiers like an org chart */
+.org-tier { display: grid; grid-template-columns: minmax(0, 390px); justify-content: center; }
+.org-link {
+  width: 1px; height: clamp(2.5rem, 5vw, 4rem); margin: 0 auto;
+  background: linear-gradient(180deg, rgba(212,175,55,0.15), var(--gold-s), rgba(212,175,55,0.15));
+  position: relative;
+}
+.org-link::after {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 5px; height: 5px;
+  transform: translate(-50%, -50%) rotate(45deg); background: var(--gold-s);
+}
+.org-link + .team-label { margin-top: clamp(1.25rem, 2.5vw, 2rem); }
+.team-group {
+  display: flex; align-items: center; gap: 1.25rem;
+  max-width: 760px; margin: clamp(2.5rem, 5vw, 3.5rem) auto clamp(1.75rem, 3vw, 2.25rem);
+  font-family: var(--display); font-weight: 400; font-size: 0.8rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(249,245,236,0.78); white-space: nowrap;
+}
+.team-label + .team-group { margin-top: 0; }
+.team-group::before, .team-group::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+
+/* Cards share row tracks (subgrid), so photo, tag, name, title, rule and bio line up across a row */
+.team-grid {
+  --gap: clamp(1.25rem, 2vw, 1.75rem);
+  display: grid; gap: var(--gap); justify-content: center;
+  grid-template-columns: minmax(0, 360px);
+}
+@media (min-width: 640px)  { .team-grid { grid-template-columns: repeat(2, minmax(0, 290px)); } }
+@media (min-width: 1000px) { .team-grid--research { grid-template-columns: repeat(3, minmax(0, 290px)); } }
+@media (min-width: 1320px) { .team-grid--ops { grid-template-columns: repeat(4, minmax(0, 290px)); } }
 .member {
-  display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0;
+  display: grid; grid-template-rows: subgrid; row-gap: 0;
   text-align: center;
   background: var(--card); border: 1px solid var(--border);
 }
+.member--lead { grid-row: span 5; grid-template-rows: auto; }
+.member--ai { grid-row: span 6; }
 .member .portrait { position: relative; aspect-ratio: 4 / 5; background: #16140f; overflow: hidden; }
-/* One gold tritone (SVG filter #ic-gold) with fine grain on every portrait, so the set reads as one shoot */
+/* One neutral black-and-white grade with fine grain on every portrait, so the set reads as one shoot */
 .member .portrait img {
   display: block; width: 100%; height: 100%;
   object-fit: cover; object-position: 50% 22%;
-  filter: contrast(1.15) url(#ic-gold);
+  filter: grayscale(1) contrast(1.07) brightness(1.02);
 }
 .member .portrait::after {
   content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -952,7 +984,20 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 }
 .member-body { display: contents; }
 .member-body > * { margin-left: clamp(1.5rem, 3vw, 2rem); margin-right: clamp(1.5rem, 3vw, 2rem); }
-.member h3 { padding-top: clamp(1.75rem, 3vw, 2.25rem); align-self: end; }
+.member-body > :first-child { padding-top: clamp(1.6rem, 2.6vw, 2.1rem); }
+/* fine gold trim set just inside each photo, with a gold rule under it */
+.member .portrait { border-bottom: 1px solid var(--border2); }
+.member .portrait::before {
+  content: ''; position: absolute; inset: 10px; z-index: 2; pointer-events: none;
+  border: 1px solid rgba(212,175,55,0.55);
+}
+.member--lead .portrait::before { inset: 12px; border-color: rgba(212,175,55,0.7); }
+.member--lead { border-color: var(--border2); }
+.ai-tag {
+  display: block; margin-bottom: 0.7rem;
+  font-family: var(--display); font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(249,245,236,0.45);
+}
 .member h3 {
   font-family: var(--display); font-weight: 500;
   font-size: clamp(1rem, 1.4vw, 1.12rem); letter-spacing: 0.12em; text-transform: uppercase;
@@ -966,11 +1011,13 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .member .member-rule { width: 40px; height: 1px; margin: 1.4rem auto; background: var(--gold-h); }
 .member-body p { font-size: clamp(1.05rem, 1.6vw, 1.15rem); line-height: 1.75; color: var(--muted); padding-bottom: clamp(2rem, 3.5vw, 2.5rem); }
 .team-disclosure {
-  margin-top: clamp(3rem, 6vw, 4.5rem); text-align: right;
-  font-size: 10px; line-height: 1.5; letter-spacing: 0.01em;
-  color: rgba(249,245,236,0.3);
+  max-width: 760px; margin: clamp(3rem, 6vw, 4.5rem) auto 0; text-align: center;
+  font-size: 11px; line-height: 1.6; letter-spacing: 0.01em;
+  color: rgba(249,245,236,0.34);
 }
-@media (min-width: 900px) { .team-disclosure { white-space: nowrap; } }
+.member--ai .member-body p { font-size: 1.02rem; line-height: 1.7; }
+.member--ai h3 { font-size: 0.98rem; letter-spacing: 0.1em; }
+.org-tier { grid-template-columns: minmax(0, 420px); }
 
 /* ── PULL QUOTE (portfolio intro) ── */
 .pull-quote {
@@ -1082,17 +1129,6 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 
 <a href="#main" class="skip-link">Skip to content</a>
 
-<!-- gold tritone for team portraits: black shadows, bronze mids, champagne highlights -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <filter id="ic-gold" color-interpolation-filters="sRGB">
-    <feColorMatrix type="saturate" values="0"/>
-    <feComponentTransfer>
-      <feFuncR type="table" tableValues="0.035 0.42 0.80 0.99"/>
-      <feFuncG type="table" tableValues="0.028 0.29 0.62 0.94"/>
-      <feFuncB type="table" tableValues="0.020 0.10 0.28 0.78"/>
-    </feComponentTransfer>
-  </filter>
-</svg>
 
 <!-- ══════════ NAV ══════════ -->
 <nav id="nav">
@@ -1533,29 +1569,147 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   </div>
 
   <div style="background:var(--black)">
-    <div class="section-inner">
-      <div class="team-grid">
-        <article class="member reveal">
-          <div class="portrait"><img src="team/chandru-mahtani.webp" alt="Portrait of Chandru Mahtani" width="880" height="1100" loading="lazy" decoding="async"></div>
+    <div class="section-inner team-wrap">
+
+      <!-- Human leadership: one per tier, linked like an organisation chart -->
+      <span class="team-label reveal">Leadership</span>
+      <div class="org-tier">
+        <article class="member member--lead reveal">
+          <div class="portrait"><img src="team/chandru-mahtani.webp" alt="AI-edited portrait of Chandru Mahtani" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
             <h3>Chandru Mahtani</h3>
-            <span class="role">CEO &amp; Head Investment Director</span>
+            <span class="role">Chief Executive Officer</span>
             <div class="member-rule"></div>
-            <p>Chandru is the third generation of a family in business since 1893. He has refined Inner Circle&rsquo;s investment philosophy over 44 years and across multiple market cycles.</p>
+            <p>Chandru leads Inner Circle&rsquo;s investment direction and overall strategy. His approach centres on long-term thinking, disciplined decision-making and careful stewardship of capital.</p>
           </div>
         </article>
-        <article class="member reveal">
-          <div class="portrait"><img src="team/amir-mahtani.webp" alt="Portrait of Amir Mahtani" width="880" height="1100" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="org-link" aria-hidden="true"></div>
+      <div class="org-tier">
+        <article class="member member--lead reveal">
+          <div class="portrait"><img src="team/amir-mahtani.webp" alt="AI-edited portrait of Amir Mahtani" width="880" height="1100" loading="lazy" decoding="async"></div>
           <div class="member-body">
             <h3>Amir Mahtani</h3>
             <span class="role">Chief Operating Officer</span>
             <div class="member-rule"></div>
-            <p>Amir runs Inner Circle&rsquo;s day-to-day operations, overseeing administration, reporting and member relations with the same discipline that guides the portfolio.</p>
+            <p>Amir oversees Inner Circle&rsquo;s operations, coordinating the administration, reporting and information that support the organisation&rsquo;s strategy and day-to-day work.</p>
+          </div>
+        </article>
+      </div>
+      <div class="org-link" aria-hidden="true"></div>
+
+      <!-- Conceptual AI personas, kept as their own section -->
+      <span class="team-label reveal">Conceptual AI Personas</span>
+
+      <h2 class="team-group reveal"><span>Investment Research</span></h2>
+      <div class="team-grid team-grid--research">
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/matteo-ricci.webp" alt="AI-generated portrait of a fictional persona, Matteo Ricci" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Matteo Ricci</h3>
+            <span class="role">Strategy &amp; Portfolio Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for organising investment themes, comparing allocation scenarios and turning complex questions into clear research briefs for human review.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/evelyn-tan.webp" alt="AI-generated portrait of a fictional persona, Evelyn Tan" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Evelyn Tan</h3>
+            <span class="role">Global Macro Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for tracking economic indicators, policy developments and market narratives, with attention to the assumptions and uncertainties behind each view.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/marcus-adeyemi.webp" alt="AI-generated portrait of a fictional persona, Marcus Adeyemi" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Marcus Adeyemi</h3>
+            <span class="role">Risk &amp; Scenario Analysis</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for examining downside scenarios, concentration and liquidity considerations, making potential exposures and trade-offs easier to assess.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/arjun-mehta.webp" alt="AI-generated portrait of a fictional persona, Arjun Mehta" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Arjun Mehta</h3>
+            <span class="role">Private Markets Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for reviewing business models, sector dynamics and transaction materials, organising evidence and open questions for further due diligence.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/dalia-mansour.webp" alt="AI-generated portrait of a fictional persona, Dalia Mansour" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Dalia Mansour</h3>
+            <span class="role">Regional Market Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for bringing together regional market developments, sector information and cross-border considerations to support a broader view of opportunities and risks.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/camila-duarte.webp" alt="AI-generated portrait of a fictional persona, Camila Duarte" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Camila Duarte</h3>
+            <span class="role">Partnership Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for mapping potential counterparties, comparing strategic fit and preparing background briefs for considered business conversations.</p>
           </div>
         </article>
       </div>
 
-      <p class="team-disclosure">Everyone on this page other than Chandru Mahtani and Amir Mahtani is a named AI agent, not a human employee. Their portraits are AI-generated representations of fictional identities.</p>
+      <h2 class="team-group reveal"><span>Operations &amp; Governance</span></h2>
+      <div class="team-grid team-grid--ops">
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/victor-albrecht.webp" alt="AI-generated portrait of a fictional persona, Victor Albrecht" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Victor Albrecht</h3>
+            <span class="role">Operations &amp; Reporting</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for organising reporting workflows, document registers and review schedules, with an emphasis on clear records and consistent follow-through.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/kenji-sato.webp" alt="AI-generated portrait of a fictional persona, Kenji Sato" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Kenji Sato</h3>
+            <span class="role">Data &amp; Systems</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for structuring research data, checking consistency and designing repeatable analytical workflows with traceable inputs and assumptions.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/simone-mensah.webp" alt="AI-generated portrait of a fictional persona, Simone Mensah" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Simone Mensah</h3>
+            <span class="role">Investor Communications</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for developing clear reporting narratives, organising investor questions and preparing concise updates for approval by the responsible human team.</p>
+          </div>
+        </article>
+        <article class="member member--ai reveal">
+          <div class="portrait"><img src="team/ingrid-voss.webp" alt="AI-generated portrait of a fictional persona, Ingrid Voss" width="880" height="1100" loading="lazy" decoding="async"></div>
+          <div class="member-body">
+            <span class="ai-tag">Conceptual AI persona</span>
+            <h3>Ingrid Voss</h3>
+            <span class="role">Governance &amp; Stewardship Research</span>
+            <div class="member-rule"></div>
+            <p>A conceptual AI persona for structuring governance materials, documenting decision criteria and preparing questions for appropriate legal, regulatory and professional review.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="team-disclosure">The ten AI personas are fictional concepts with AI-generated portraits. They describe proposed research and operational support functions, not human employees, licensed advisers or confirmed deployed AI systems. Human leadership retains responsibility for decisions and commitments. Human leadership portraits have been edited with AI.</p>
     </div>
   </div>
 
