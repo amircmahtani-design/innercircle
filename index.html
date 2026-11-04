@@ -985,13 +985,11 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .member-body { display: contents; }
 .member-body > * { margin-left: clamp(1.5rem, 3vw, 2rem); margin-right: clamp(1.5rem, 3vw, 2rem); }
 .member-body > :first-child { padding-top: clamp(1.6rem, 2.6vw, 2.1rem); }
-/* fine gold trim set just inside each photo, with a gold rule under it */
-.member .portrait { border-bottom: 1px solid var(--border2); }
-.member .portrait::before {
-  content: ''; position: absolute; inset: 10px; z-index: 2; pointer-events: none;
-  border: 1px solid rgba(212,175,55,0.55);
+/* each photo sits inside the card like a mounted print: dark mat all round, gold hairline on the photo's own edge */
+.member .portrait {
+  margin: 10px 10px 0; outline: 1px solid rgba(212,175,55,0.5); outline-offset: 0;
 }
-.member--lead .portrait::before { inset: 12px; border-color: rgba(212,175,55,0.7); }
+.member--lead .portrait { margin: 12px 12px 0; outline-color: rgba(212,175,55,0.7); }
 .member--lead { border-color: var(--border2); }
 .ai-tag {
   display: block; margin-bottom: 0.7rem;
