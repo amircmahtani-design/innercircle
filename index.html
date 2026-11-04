@@ -130,81 +130,78 @@ html:not(.js) .view { display: block; }
 #popup-overlay > .popup { margin: auto; }
 @keyframes pop-in { to { opacity: 1; } }
 
+/* Gold plaque: polished plate with brushed grain, bevelled edge, engraved lettering, corner studs */
 .popup {
-  position: relative; max-width: 540px; width: 100%;
-  background: #0b0900;
-  border: 1px solid rgba(212,175,55,0.38);
-  padding: clamp(2.5rem, 6vw, 4.5rem);
-  text-align: center;
-  box-shadow: 0 0 100px rgba(212,175,55,0.12), inset 0 1px 0 rgba(255,233,122,0.18);
+  position: relative; width: 100%; max-width: 470px; text-align: center;
+  padding: clamp(2.3rem, 5vw, 3.4rem) clamp(1.9rem, 5vw, 3.2rem) clamp(2.5rem, 5vw, 3.4rem);
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0 1px, transparent 1px 5px),
+    linear-gradient(135deg, #7d5c17 0%, #b88a2c 18%, #e9cd7c 38%, #f8e7aa 48%, #d7b259 62%, #a9802a 82%, #7a5915 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,246,210,0.85), inset 0 -2px 0 rgba(60,38,4,0.55),
+    inset 1px 0 0 rgba(255,240,190,0.5), inset -1px 0 0 rgba(70,45,6,0.45),
+    0 0 0 1px #4a3409, 0 30px 70px rgba(0,0,0,0.75), 0 0 90px rgba(212,175,55,0.18);
 }
+/* engraved inner border: dark groove with a light lip */
 .popup::before {
-  content: ''; position: absolute; inset: 8px;
-  border: 1px solid rgba(212,175,55,0.1); pointer-events: none;
+  content: ''; position: absolute; inset: 11px; pointer-events: none;
+  border: 1px solid rgba(70,45,6,0.55);
+  box-shadow: 0 1px 0 rgba(255,244,200,0.55), inset 0 1px 0 rgba(255,244,200,0.35);
+}
+.popup-rivet {
+  position: absolute; width: 9px; height: 9px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff3c4 0, #d8b352 35%, #7a5714 80%);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.45), inset 0 -1px 1px rgba(0,0,0,0.3);
+}
+.popup-rivet.r1 { top: 20px; left: 20px; }   .popup-rivet.r2 { top: 20px; right: 20px; }
+.popup-rivet.r3 { bottom: 20px; left: 20px; } .popup-rivet.r4 { bottom: 20px; right: 20px; }
+.popup-overline, .popup-headline, .popup-body {
+  color: #2a1c04; text-shadow: 0 1px 0 rgba(255,243,200,0.6), 0 -1px 0 rgba(60,38,4,0.25);
 }
 .popup-emblem {
-  width: clamp(100px, 20vw, 150px); height: auto;
-  margin: 0 auto 2rem; display: block;
-  filter: drop-shadow(0 4px 28px rgba(212,175,55,0.45));
+  width: clamp(78px, 14vw, 104px); height: auto; display: block; margin: 0 auto 0.9rem;
+  filter: brightness(0.18) sepia(1) saturate(1.6) drop-shadow(0 1px 0 rgba(255,243,200,0.55));
 }
-.popup-rule { width: 90px; height: 1px; margin: 1.75rem auto; background: var(--gold-h); }
 .popup-overline {
-  font-family: var(--display); font-size: 0.72rem;
-  letter-spacing: 0.45em; text-transform: uppercase;
-  color: var(--gold-s);
-  background: var(--gold); -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; background-clip: text;
-  margin-bottom: 1rem;
+  font-family: var(--display); font-size: clamp(0.62rem, 1.4vw, 0.72rem); font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase; line-height: 1.8;
+}
+.popup-rule {
+  width: 70px; height: 1px; margin: 1rem auto;
+  background: rgba(60,38,4,0.55); box-shadow: 0 1px 0 rgba(255,243,200,0.6);
 }
 .popup-headline {
-  font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 300; line-height: 1.2; color: var(--white);
-  margin-bottom: 1.25rem;
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(2.05rem, 5vw, 2.6rem); line-height: 1.15;
 }
-.popup-headline em {
-  font-style: italic; color: var(--gold-s);
-  background: var(--gold); -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; background-clip: text;
-}
+.popup-headline em { display: block; font-style: italic; }
 .popup-body {
-  font-size: clamp(1rem, 2vw, 1.15rem); color: var(--muted);
-  line-height: 1.88; margin-bottom: 2.25rem;
+  font-family: var(--serif); font-weight: 500; color: #3a2808;
+  font-size: clamp(1.04rem, 2vw, 1.12rem); line-height: 1.6;
 }
 .popup-btn {
-  font-family: var(--display); font-size: 0.72rem;
-  letter-spacing: 0.3em; text-transform: uppercase;
-  background: var(--gold); color: var(--black);
-  border: none; padding: 1.1rem 2.5rem;
-  cursor: pointer; width: 100%; position: relative; overflow: hidden;
-  box-shadow: 0 4px 28px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,244,153,0.5);
-  transition: box-shadow 0.3s, transform 0.2s;
+  margin-top: 1.35rem; width: 100%; padding: 1rem; border: 0; cursor: pointer;
+  font-family: var(--display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase;
+  background: linear-gradient(180deg, #17120a, #070604); color: #e7c766;
+  box-shadow: inset 0 1px 0 rgba(255,220,120,0.18), 0 1px 0 rgba(255,243,200,0.6),
+              0 0 0 1px rgba(40,26,2,0.8), 0 6px 16px rgba(40,26,2,0.45);
+  transition: box-shadow 0.3s, transform 0.2s, color 0.3s;
 }
-.popup-btn::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 55%);
-  pointer-events: none;
+.popup-btn:hover, .popup-btn:focus-visible {
+  color: #f8e7aa; transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255,220,120,0.25), 0 1px 0 rgba(255,243,200,0.6),
+              0 0 0 1px rgba(40,26,2,0.8), 0 10px 22px rgba(40,26,2,0.55);
 }
-.popup-btn:hover {
-  box-shadow: 0 8px 48px rgba(212,175,55,0.5), inset 0 1px 0 rgba(255,244,153,0.5);
-  transform: translateY(-2px);
-}
-/* phones and short screens: tighter card so the whole thing fits on one screen */
-@media (max-width: 620px), (max-height: 760px) {
-  .popup { padding: 2rem 1.5rem 1.75rem; }
-  .popup::before { inset: 6px; }
-  .popup-emblem { width: 84px; margin-bottom: 1.1rem; }
-  .popup-overline { font-size: 0.66rem; letter-spacing: 0.32em; line-height: 1.8; margin-bottom: 0.5rem; }
-  .popup-rule { margin: 1.1rem auto; width: 70px; }
-  .popup-headline { font-size: 2rem; margin-bottom: 0.9rem; }
-  .popup-body { font-size: 1.02rem; line-height: 1.65; margin-bottom: 1.4rem; }
-  .popup-btn { padding: 1rem 1rem; letter-spacing: 0.24em; }
-}
+.popup-btn:focus-visible { outline: 1px solid #2a1c04; outline-offset: 3px; }
+/* very short screens: tighten so the whole plaque fits */
 @media (max-height: 620px) {
-  .popup { padding: 1.5rem 1.25rem 1.4rem; }
-  .popup-emblem { width: 64px; margin-bottom: 0.75rem; }
-  .popup-rule { margin: 0.8rem auto; }
-  .popup-headline { font-size: 1.8rem; margin-bottom: 0.6rem; }
-  .popup-body { line-height: 1.55; margin-bottom: 1.1rem; }
+  .popup { padding: 1.8rem 1.6rem 2.6rem; }
+  .popup-emblem { width: 62px; margin-bottom: 0.6rem; }
+  .popup-rule { margin: 0.7rem auto; }
+  .popup-headline { font-size: 1.8rem; }
+  .popup-body { line-height: 1.5; }
+  .popup-btn { margin-top: 1rem; }
 }
 
 /* ── NAV ── */
@@ -1179,12 +1176,14 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 <!-- ══════════ POPUP ══════════ -->
 <div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-headline">
   <div class="popup">
+    <span class="popup-rivet r1" aria-hidden="true"></span><span class="popup-rivet r2" aria-hidden="true"></span>
+    <span class="popup-rivet r3" aria-hidden="true"></span><span class="popup-rivet r4" aria-hidden="true"></span>
     <img class="popup-emblem" src="logo.png" alt="" width="400" height="280">
     <div class="popup-overline">Inner Circle &middot; Gibraltar</div>
     <div class="popup-rule"></div>
-    <h2 class="popup-headline" id="popup-headline">Closed for<br><em>Subscription</em></h2>
-    <p class="popup-body">Inner Circle is a private investment vehicle operating by invitation only. We are not currently accepting new subscriptions. Thank you for your interest.</p>
+    <h2 class="popup-headline" id="popup-headline">Closed for <em>Subscription</em></h2>
     <div class="popup-rule"></div>
+    <p class="popup-body">Inner Circle is a private investment vehicle operating by invitation only. We are not currently accepting new subscriptions. Thank you for your interest.</p>
     <button class="popup-btn" id="popup-btn">Acknowledge &amp; Enter</button>
   </div>
 </div>
